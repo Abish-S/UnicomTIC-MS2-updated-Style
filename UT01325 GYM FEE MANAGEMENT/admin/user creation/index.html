@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@100..900&display=swap" rel="stylesheet">
+    <title>Member Management</title>
+    <style>
+        body {
+            font-family: 'Jost', sans-serif;
+            background-color: #1c1c1c;
+            color: #ecf0f1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            padding: 20px;
+            margin: 0;
+        }
+
+        .table-container {
+            background-color: #2a2a2a;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 0 20px rgba(0, 204, 255, 0.5);
+            width: 90%;
+            max-width: 900px;
+        }
+
+        h1.table-heading {
+            color: #00bcd4;
+            text-shadow: 0 0 10px rgba(0, 204, 255, 0.8);
+            margin-bottom: 20px;
+        }
+
+        .search-container {
+            display: flex;
+            margin-bottom: 20px;
+        }
+
+        #searchInput {
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            margin-right: 10px;
+            box-shadow: 0 0 10px rgba(0, 204, 255, 0.5);
+        }
+
+        #searchButton, .btn {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            background-color: #00bcd4;
+            color: #ecf0f1;
+            cursor: pointer;
+            transition: background-color 0.3s, box-shadow 0.3s;
+            margin: 0 5px;
+        }
+
+        #searchButton:hover, .btn:hover {
+            background-color: rgba(0, 204, 255, 0.8);
+            box-shadow: 0 0 15px rgba(0, 204, 255, 0.6);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #444;
+        }
+
+        th {
+            background-color: #333;
+            color: #00bcd4;
+            text-shadow: 0 0 5px rgba(0, 204, 255, 0.8);
+        }
+
+        tr:hover {
+            background-color: rgba(0, 204, 255, 0.1);
+        }
+
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; 
+            z-index: 1; 
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto; 
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        .modal-content {
+            background-color: #2b2b2b;
+            margin: 15% auto; 
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%; 
+            box-shadow: 0 0 20px rgba(0, 204, 255, 0.5);
+            border-radius: 10px;
+        }
+
+        .modal img {
+            cursor: pointer;
+        }
+
+        .inputDetails {
+            margin-bottom: 15px;
+        }
+
+        .inputDetails label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .inputDetails input, .inputDetails select {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #444;
+            color: #ecf0f1;
+            box-shadow: 0 0 10px rgba(0, 204, 255, 0.5);
+        }
+
+        .red {
+            background-color: #4dd5ff;
+        }
+
+        .red:hover {
+            background-color: rgba(77, 249, 255, 0.8);
+            box-shadow: 0 0 15px rgba(77, 255, 216, 0.6);
+        }
+
+        .df {
+            display: flex;
+            justify-content: space-between;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="table-container">
+        <h1 class="table-heading">Member Management</h1>
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Search by ID">
+            <button id="searchButton" onclick="search()">Search</button>
+        </div>
+        <button type="button" id="addMember" class="red btn" style="margin: 0% 3%;" onclick="openModalWindow(modal1)">Add Member</button>
+        <table id="data-table">
+            <thead>
+                <tr>
+                    <th>Member ID</th>
+                    <th>Name</th>
+                    <th>Membership Type</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Member data will be inserted here -->
+            </tbody>
+        </table>
+    </div>
+
+    <div class="modal" id="modal1">
+        <div class="modal-content">
+            <img src="../../Icons/close btn.svg" alt="close" width="2%" onclick="closeModalWindow(modal1)">
+            <h2 id="modalTitle" class="modalTitle">Create New Member</h2>
+            <form action="" id="memberDetails">
+                <div class="catergory df">
+                    <div class="inputDetails">
+                        <label for="fname">First Name:</label>
+                        <input type="text" name="fname" id="fname" required>
+                        <p id="message1"></p>
+                    </div>
+                    <div class="inputDetails">
+                        <label for="lname">Last Name:</label>
+                        <input type="text" name="lname" id="lname" required>
+                        <p id="message2"></p>
+                    </div>
+                </div>
+                <div class="catergory df">
+                    <div class="inputDetails">
+                        <label for="age">Age:</label>
+                        <input type="number" name="age" id="age" required>
+                        <p id="message8"></p>
+                    </div>
+                    <div class="inputDetails">
+                        <label for="height">Height:</label>
+                        <input type="number" name="height" id="height">
+                        <p id="message10"></p>
+                    </div>
+                    <div class="inputDetails">
+                        <label for="weight">Weight:</label>
+                        <input type="number" name="weight" id="weight">
+                        <p id="message11"></p>
+                    </div>
+                </div>
+                <div class="catergory df">
+                    <div class="inputDetails">
+                        <label for="gender">Gender:</label>
+                        <input type="radio" name="gender" value="male">Male
+                        <input type="radio" name="gender" value="female">Female
+                        <input type="radio" name="gender" value="other">Other
+                        <p id="message9"></p>
+                    </div>
+                    <div class="inputDetails">
+                        <label for="dob">Date of Birth:</label>
+                        <input type="date" name="dob" id="dob" required>
+                        <p id="message6"></p>
+                    </div>
+                </div>
+                <div class="catergory df">
+                    <div class="inputDetails">
+                        <label for="nicNo">NIC Number:</label>
+                        <input type="text" name="nicNo" id="nicNo">
+                        <p id="message3"></p>
+                    </div>
+                    <div class="inputDetails">
+                        <label for="contactNo">Contact Number:</label>
+                        <input type="number" name="contactNo" id="contactNo" required>
+                        <p id="message5"></p>
+                    </div>
+                </div>
+                <div class="catergory df">
+                    <div class="inputDetails">
+                        <label for="email">Email:</label>
+                        <input type="email" name="email" id="email" required>
+                        <p id="message7"></p>
+                    </div>
+                    <div class="inputDetails">
+                        <label for="membershipType">Membership Type:</label>
+                        <select name="membershipType" id="membershipType">
+                            <option value="monthlyMembership">Monthly Membership</option>
+                            <option value="annualMembership">Annual Membership</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="catergory df">
+                    <div class="inputDetails">
+                        <label for="address">Address:</label>
+                        <input type="text" name="address" id="address" required>
+                        <p id="message4"></p>
+                    </div>
+                    <div class="inputDetails">
+                        <button type="button" id="programSelection" onclick="openModalWindow(modal2)">TRAINING PROGRAM</button>
+                    </div>
+                </div>
+                <p id="paymentAmount"></p>
+                <button type="submit" id="modalSubmit">Add Member</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal" id="modalDeleteUser">
+        <div class="modal-content">
+            <img src="../../Icons/close btn.svg" alt="close" width="2%" onclick="closeModalWindow(modalDeleteUser)">
+            <h3 class="modalTitle">Delete User</h3>
+            <p>Do you want to delete user <span id="User"></span>?</p>
+            <div class="df">
+                <button type="button" id="Delete">Yes</button>
+                <button type="button" onclick="closeModalWindow(modalDeleteUser)" class="red">No</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="modalViewUser">
+        <div class="modal-content">
+            <img src="../../Icons/close btn.svg" alt="close" width="2%" onclick="closeModalWindow(modalViewUser)">
+            <div id="UserDetails"></div>
+            <button type="button" class="tablecolor btn" style="margin-left: 48%;" onclick="closeModalWindow(modalViewUser)">Okay</button>
+        </div>
+    </div>
+
+    <script src="Payment.js"></script>
+    <script src="../program creation/program.js"></script>
+    <script src="Members.js"></script>
+    <script src="userCreation.js"></script>
+</body>
+
+</html>

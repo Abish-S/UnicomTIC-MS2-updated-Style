@@ -1,0 +1,47 @@
+o741446o
+A319083s
+T843669s
+t810119d
+
+
+
+
+        // member.membershipType=membershipType.value ;
+        // let preExistingProgram=member.trainingProgram;
+        // if(UserSelectedProgram!=[]){
+        //     let paymentDetails=0;
+        //     UserSelectedProgram.forEach(e =>{
+        //         console.log("a")
+        //         let count=0;
+        //         preExistingProgram.forEach(item=>{
+        //             console.log("a")
+        //             if(e.id==item.id){
+        //                 console.log("b")
+        //                 count +=1;
+        //             }
+        //         });
+        //         if(count==0){
+        //             console.log(count)
+        //             member.payment +=Number(e.monthlyFee);
+        //             paymentDetails +=Number(e.initalFee);
+
+        //         }
+        //     });            
+        //     member.trainingProgram=UserSelectedProgram;
+        //     let Paid=paymentDetails;
+        //     let details="Initial Fee";
+        //     const date = new Date();
+        //     let paymentDate = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`
+            
+        //     const UserPayment = new Payment(Paid, details, paymentDate);
+        //     // const member = gymMember.find(item => item.id === id);
+        //     console.log(paymentHistory)
+        //      const pay=paymentHistory.find(i=> i[0]===id);
+
+        //     let array=pay.at(1);
+        //     array.push(UserPayment);
+        //     console.log(array)
+
+
+        // }
+        // localStorage.setItem('paymentHistory', JSON.stringify(paymentHistory));

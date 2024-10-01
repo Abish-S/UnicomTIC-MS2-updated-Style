@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@100..900&display=swap" rel="stylesheet">
+    <title>Workout Program Report</title>
+    <style>
+        body {
+            font-family: 'Jost', sans-serif;
+            background-color: #1c1c1c;
+            color: #ecf0f1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #00bcd4;
+            text-shadow: 0 0 10px rgba(0, 204, 255, 0.8);
+            margin-bottom: 20px;
+        }
+
+        .df {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 900px;
+            margin-top: 20px;
+        }
+
+        #conclution {
+            background-color: #2a2a2a;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 204, 255, 0.5);
+            width: 30%;
+            min-height: 200px;
+        }
+
+        .chart-container {
+            width: 65%;
+            position: relative;
+        }
+
+        canvas {
+            background-color: #2a2a2a;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 204, 255, 0.5);
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Training Program Report</h1>
+    <div class="df">
+        <div id="conclution">
+            <!-- Conclusions or summary content will be inserted here -->
+        </div>
+        <div class="chart-container">
+            <canvas id="ProgramReportChart"></canvas>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="workoutProgramReport.js"></script>
+</body>
+
+</html>
